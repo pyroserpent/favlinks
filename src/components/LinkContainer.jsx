@@ -17,7 +17,7 @@ function LinkContainer() {
     };
 
     return (
-        <div>
+        <div className="container">
             <h1>My Favorite Links</h1>
             <p>Add a new link with a name and URL to the table!</p>
             <Table linkData={favLinks} removeLink={handleRemove} />
@@ -25,6 +25,7 @@ function LinkContainer() {
             <Form handleSubmit={handleSubmit} />
         </div>
     );
+
 }
 
 export default LinkContainer;
