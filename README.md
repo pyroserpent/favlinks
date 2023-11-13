@@ -25,7 +25,7 @@ By the end of this homework, you will have built your first functional React app
 ## Set Up Procedures
 
 0. Open the terminal and navigate to a safe file destination (ex: run command `cd ~/Desktop`)
-1. In the terminal run the command: `git clone https://github.com/camunity/favlinks`
+1. In the terminal run the command: `git clone https://github.com/464squad/favlinks.git`
 2. cd into the new folder after it's finished cloning
 3. run command `npm install`
 4. run command `npm start`
