@@ -1,3 +1,4 @@
+//updated to fetch api crud
 import React, { useState, useEffect } from 'react';
 
 function Form({ handleSubmit, linkToEdit, resetEdit }) {
