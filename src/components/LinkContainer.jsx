@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from './Table';
 import Form from './Form';
 
 function LinkContainer() {
     const [favLinks, setFavLinks] = useState([]);
 
-    const handleRemove = (index) => {
-        // Remove the link at the specified index
-        const updatedLinks = favLinks.filter((_, i) => i !== index);
-        setFavLinks(updatedLinks);
+    useEffect(() => {
+        fetch('/api/links')
+          .then(response => response.json())
+          .then(data => setFavLinks(data))
+          .catch(err => console.error('Error fetching data:', err));
+    }, []);
+
+    const handleRemove = (id) => {
+        fetch(`/api/links/${id}`, { method: 'DELETE' })
+          .then(() => setFavLinks(prev => prev.filter(link => link.id !== id)))
+          .catch(err => console.error('Error deleting data:', err));
     };
 
     const handleSubmit = (favLink) => {
-        // Add the new favorite link to the array
-        setFavLinks([...favLinks, favLink]);
+        fetch('/api/links', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(favLink)
+        })
+        .then(response => response.json())
+        .then(newLink => setFavLinks(prev => [...prev, newLink]))
+        .catch(err => console.error('Error posting data:', err));
     };
 
     return (
@@ -25,7 +38,6 @@ function LinkContainer() {
             <Form handleSubmit={handleSubmit} />
         </div>
     );
-
 }
 
 export default LinkContainer;

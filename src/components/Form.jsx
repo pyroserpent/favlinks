@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function Form({ handleSubmit }) {
+function Form({ handleSubmit, linkToEdit, resetEdit }) {
     const [linkName, setLinkName] = useState('');
     const [linkURL, setLinkURL] = useState('');
+    const [isEditing, setIsEditing] = useState(false);
+
+    useEffect(() => {
+        if (linkToEdit) {
+            setLinkName(linkToEdit.name);
+            setLinkURL(linkToEdit.URL);
+            setIsEditing(true);
+        }
+    }, [linkToEdit]);
 
     const onSubmit = (event) => {
         event.preventDefault();
-        handleSubmit({ name: linkName, URL: linkURL });
+        handleSubmit({ name: linkName, URL: linkURL, isEditing, id: linkToEdit?.id });
         setLinkName('');
         setLinkURL('');
+        setIsEditing(false);
+        if (isEditing) resetEdit();
     };
 
     return (
@@ -31,7 +42,7 @@ function Form({ handleSubmit }) {
                 onChange={(e) => setLinkURL(e.target.value)}
             />
             <br /><br />
-            <input type="submit" value="Submit" />
+            <input type="submit" value={isEditing ? "Update Link" : "Add Link"} />
         </form>
     );
 }
