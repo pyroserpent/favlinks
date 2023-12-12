@@ -93,3 +93,16 @@ button {
 button:hover {
     background-color: #d32f2f;
 }
+button.edit {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+button.delete {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+button.edit:hover, button.delete:hover {
+    opacity: 0.8;
+}
