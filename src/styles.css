@@ -20,6 +20,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+
 h1 {
     color: #2c3e50;
     font-size: 2.2rem;
@@ -87,14 +88,11 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-right: 5px; /* Add right margin to each button */
 }
 
 button:hover {
     background-color: #2980b9;
-}
-
-button.edit, button.delete {
-    margin-left: 5px;
 }
 
 button.edit {
@@ -103,6 +101,7 @@ button.edit {
 
 button.delete {
     background-color: #e74c3c; /* Red */
+    margin-right: 0; /* Remove right margin for delete button */
 }
 
 button.edit:hover {
